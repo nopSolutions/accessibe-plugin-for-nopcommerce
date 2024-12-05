@@ -16,7 +16,8 @@ namespace Nop.Plugin.Widgets.AccessiBe.Infrastructure
         /// <param name="endpointRouteBuilder">Route builder</param>
         public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
         {
-            endpointRouteBuilder.MapControllerRoute(AccessiBeDefaults.ConfigurationRouteName, "Plugins/AccessiBe/Configure",
+            endpointRouteBuilder.MapControllerRoute(AccessiBeDefaults.ConfigurationRouteName, 
+                "Plugins/AccessiBe/Configure",
                 new { controller = "AccessiBe", action = "Configure", area = AreaNames.Admin });
         }
 
