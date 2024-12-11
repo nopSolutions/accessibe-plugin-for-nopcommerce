@@ -26,18 +26,215 @@
                         <span asp-validation-for="Enabled"></span>
                     </div>
                 </div>
-                <nop-nested-setting asp-for="Enabled">
+
+                <div id="trigger-button-section">
                     <div class="form-group row">
                         <div class="col-md-3">
-                            <nop-override-store-checkbox asp-for="Script_OverrideForStore" asp-input="Script" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
-                            <nop-label asp-for="Script" />
+                            <nop-override-store-checkbox asp-for="TriggerModel.ShowTrigger_OverrideForStore" asp-input="TriggerModel.ShowTrigger" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                            <nop-label asp-for="TriggerModel.ShowTrigger" />
                         </div>
                         <div class="col-md-9">
-                            <nop-textarea asp-for="Script" asp-required="true" />
-                            <span asp-validation-for="Script"></span>
+                            <nop-editor asp-for="TriggerModel.ShowTrigger" />
+                            <span asp-validation-for="TriggerModel.ShowTrigger"></span>
                         </div>
                     </div>
-                </nop-nested-setting>
+                    <nop-nested-setting asp-for="TriggerModel.ShowTrigger">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.LeadColor_OverrideForStore" asp-input="TriggerModel.LeadColor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.LeadColor" />
+                            </div>
+                            <div class="col-md-9">
+                                <input type="color" asp-for="TriggerModel.LeadColor" />
+                                <span asp-validation-for="TriggerModel.LeadColor"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.StatementLink_OverrideForStore" asp-input="TriggerModel.StatementLink" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.StatementLink" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TriggerModel.StatementLink" />
+                                <span asp-validation-for="TriggerModel.StatementLink"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.Language_OverrideForStore" asp-input="TriggerModel.Language" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.Language" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TriggerModel.Language" />
+                                <span asp-validation-for="TriggerModel.Language"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.Position_OverrideForStore" asp-input="TriggerModel.Position" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.Position" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerModel.Position" asp-items="@await Model.TriggerModel.Position.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerModel.Position"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerColor_OverrideForStore" asp-input="TriggerModel.TriggerColor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerColor" />
+                            </div>
+                            <div class="col-md-9">
+                                <input type="color" asp-for="TriggerModel.TriggerColor" />
+                                <span asp-validation-for="TriggerModel.TriggerColor"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerPositionX_OverrideForStore" asp-input="TriggerModel.TriggerPositionX" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerPositionX" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerModel.TriggerPositionX" asp-items="@await Model.TriggerModel.TriggerPositionX.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerModel.TriggerPositionX"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerPositionY_OverrideForStore" asp-input="TriggerModel.TriggerPositionY" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerPositionY" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerModel.TriggerPositionY" asp-items="@await Model.TriggerModel.TriggerPositionY.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerModel.TriggerPositionY"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerSize_OverrideForStore" asp-input="TriggerModel.TriggerSize" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerSize" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerModel.TriggerSize" asp-items="@await Model.TriggerModel.TriggerSize.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerModel.TriggerSize"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerRadius_OverrideForStore" asp-input="TriggerModel.TriggerRadius" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerRadius" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerModel.TriggerRadius" asp-items="@await Model.TriggerModel.TriggerRadius.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerModel.TriggerRadius"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerOffsetX_OverrideForStore" asp-input="TriggerModel.TriggerOffsetX" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerOffsetX" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TriggerModel.TriggerOffsetX" />
+                                <span asp-validation-for="TriggerModel.TriggerOffsetX"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerOffsetY_OverrideForStore" asp-input="TriggerModel.TriggerOffsetY" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerOffsetY" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TriggerModel.TriggerOffsetY" />
+                                <span asp-validation-for="TriggerModel.TriggerOffsetY"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerIcon_OverrideForStore" asp-input="TriggerModel.TriggerIcon" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerModel.TriggerIcon" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerModel.TriggerIcon" asp-items="@await Model.TriggerModel.TriggerIcon.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerModel.TriggerIcon"></span>
+                            </div>
+                        </div>
+                    </nop-nested-setting>
+
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <nop-override-store-checkbox asp-for="TriggerModel.ShowMobile_OverrideForStore" asp-input="TriggerModel.ShowMobile" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                            <nop-label asp-for="TriggerModel.ShowMobile" />
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="TriggerModel.ShowMobile" />
+                            <span asp-validation-for="TriggerModel.ShowMobile"></span>
+                        </div>
+                    </div>
+                    <nop-nested-setting asp-for="TriggerModel.ShowMobile">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerPositionX_OverrideForStore" asp-input="TriggerMobileModel.TriggerPositionX" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerMobileModel.TriggerPositionX" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerMobileModel.TriggerPositionX" asp-items="@await Model.TriggerMobileModel.TriggerPositionX.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerMobileModel.TriggerPositionX"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerPositionY_OverrideForStore" asp-input="TriggerMobileModel.TriggerPositionY" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerMobileModel.TriggerPositionY" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerMobileModel.TriggerPositionY" asp-items="@await Model.TriggerMobileModel.TriggerPositionY.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerMobileModel.TriggerPositionY"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerRadius_OverrideForStore" asp-input="TriggerMobileModel.TriggerRadius" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerMobileModel.TriggerRadius" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerMobileModel.TriggerRadius" asp-items="@await Model.TriggerMobileModel.TriggerRadius.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerMobileModel.TriggerRadius"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerSize_OverrideForStore" asp-input="TriggerMobileModel.TriggerSize" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerMobileModel.TriggerSize" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="TriggerMobileModel.TriggerSize" asp-items="@await Model.TriggerMobileModel.TriggerSize.ToSelectListAsync()" />
+                                <span asp-validation-for="TriggerMobileModel.TriggerSize"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerOffsetX_OverrideForStore" asp-input="TriggerMobileModel.TriggerOffsetX" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerMobileModel.TriggerOffsetX" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TriggerMobileModel.TriggerOffsetX" />
+                                <span asp-validation-for="TriggerMobileModel.TriggerOffsetX"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerOffsetY_OverrideForStore" asp-input="TriggerMobileModel.TriggerOffsetY" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="TriggerMobileModel.TriggerOffsetY" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TriggerMobileModel.TriggerOffsetY" />
+                                <span asp-validation-for="TriggerMobileModel.TriggerOffsetY"></span>
+                            </div>
+                        </div>
+                    </nop-nested-setting>
+                </div>
+
                 <div class="form-group row">
                     <div class="col-md-9 offset-md-3">
                         <input type="submit" name="save" class="btn btn-primary" value="@T("Admin.Common.Save")" />
@@ -47,3 +244,20 @@
         </div>
     </div>
 </form>
+
+<script asp-location="Footer">
+    $(function() {
+        const configSection = $("#trigger-button-section");
+        const enableCheckBox = $("#@Html.IdFor(m => m.Enabled)");
+
+        toggleConfig();
+        enableCheckBox.on("change", toggleConfig);
+
+        function toggleConfig() {
+            if (enableCheckBox.is(':checked'))
+                configSection.showElement();
+            else
+                configSection.hideElement();
+        }
+    });
+</script>
