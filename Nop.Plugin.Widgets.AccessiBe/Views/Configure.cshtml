@@ -151,14 +151,15 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerIcon_OverrideForStore" asp-input="TriggerModel.TriggerIcon" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-override-store-checkbox asp-for="TriggerModel.TriggerIcon_OverrideForStore" asp-parent-container="trigger-icon-container" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
                                 <nop-label asp-for="TriggerModel.TriggerIcon" />
                             </div>
                             <div class="col-md-9">
-                                <nop-select asp-for="TriggerModel.TriggerIcon" asp-items="@await Model.TriggerModel.TriggerIcon.ToSelectListAsync()" />
-                                <span asp-validation-for="TriggerModel.TriggerIcon"></span>
+                                @await Html.PartialAsync("~/Plugins/Widgets.AccessiBe/Views/_Configure.Icons.cshtml", (Html.NameFor(m => m.TriggerModel.TriggerIcon), Model.TriggerModel.TriggerIcon))
                             </div>
                         </div>
+
+
                     </nop-nested-setting>
 
                     <div class="form-group row">
