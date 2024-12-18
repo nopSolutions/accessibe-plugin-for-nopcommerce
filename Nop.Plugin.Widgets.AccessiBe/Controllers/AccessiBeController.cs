@@ -22,6 +22,7 @@ public class AccessiBeController : BasePluginController
 
     private readonly ILocalizationService _localizationService;
     private readonly INotificationService _notificationService;
+    private readonly IPermissionService _permissionService;
     private readonly ISettingService _settingService;
     private readonly IStoreContext _storeContext;
 
@@ -31,11 +32,13 @@ public class AccessiBeController : BasePluginController
 
     public AccessiBeController(ILocalizationService localizationService,
         INotificationService notificationService,
+        IPermissionService permissionService,
         ISettingService settingService,
         IStoreContext storeContext)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
+        _permissionService = permissionService;
         _settingService = settingService;
         _storeContext = storeContext;
     }
@@ -44,9 +47,11 @@ public class AccessiBeController : BasePluginController
 
     #region Methods
 
-    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure()
     {
+        if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
+            return AccessDeniedView();
+
         var storeId = await _storeContext.GetActiveStoreScopeConfigurationAsync();
 
         var settings = await _settingService.LoadSettingAsync<AccessiBeSettings>(storeId);
@@ -105,9 +110,11 @@ public class AccessiBeController : BasePluginController
     }
 
     [HttpPost]
-    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure(ConfigurationModel model)
     {
+        if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
+            return AccessDeniedView();
+
         if (!ModelState.IsValid)
             return await Configure();
 
