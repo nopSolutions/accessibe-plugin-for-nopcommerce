@@ -11,7 +11,7 @@ public enum TriggerButtonHide
     Hide,
 
     /// <summary>
-    /// Hide trigger button
+    /// Show trigger button
     /// </summary>
     Show
 }

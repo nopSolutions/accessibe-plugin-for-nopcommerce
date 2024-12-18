@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Nop.Plugin.Widgets.AccessiBe.Domain;
 
@@ -21,13 +20,13 @@ public enum TriggerButtonShape
     Square,
 
     /// <summary>
-    /// Square witht corner radius 10px
+    /// Square with corner radius 10px
     /// </summary>
     [EnumMember(Value = "10px")]
     SquircleBig,
 
     /// <summary>
-    /// Square witht corner radius 5px
+    /// Square with corner radius 5px
     /// </summary>
     [EnumMember(Value = "5px")]
     SquircleSmall

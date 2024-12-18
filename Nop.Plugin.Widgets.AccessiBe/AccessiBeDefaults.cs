@@ -1,6 +1,4 @@
-﻿using Nop.Core;
-
-namespace Nop.Plugin.Widgets.AccessiBe;
+﻿namespace Nop.Plugin.Widgets.AccessiBe;
 
 /// <summary>
 /// Represents plugin constants
@@ -16,4 +14,9 @@ public class AccessiBeDefaults
     /// Gets the configuration route name
     /// </summary>
     public static string ConfigurationRouteName => "Plugin.Widgets.AccessiBe.Configure";
+
+    /// <summary>
+    /// Gets the script configuration token
+    /// </summary>
+    public static string ConfigToken => "{WIDGET_CONFIG}";
 }

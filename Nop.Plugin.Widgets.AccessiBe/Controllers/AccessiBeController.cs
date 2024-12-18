@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Cms;
 using Nop.Plugin.Widgets.AccessiBe.Models;
@@ -7,7 +6,6 @@ using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
-using Nop.Services.Stores;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
@@ -26,8 +24,6 @@ public class AccessiBeController : BasePluginController
     private readonly INotificationService _notificationService;
     private readonly ISettingService _settingService;
     private readonly IStoreContext _storeContext;
-    private readonly IStoreService _storeService;
-    private readonly IWebHelper _webHelper;
 
     #endregion
 
@@ -36,16 +32,12 @@ public class AccessiBeController : BasePluginController
     public AccessiBeController(ILocalizationService localizationService,
         INotificationService notificationService,
         ISettingService settingService,
-        IStoreContext storeContext,
-        IStoreService storeService,
-        IWebHelper webHelper)
+        IStoreContext storeContext)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
         _settingService = settingService;
         _storeContext = storeContext;
-        _storeService = storeService;
-        _webHelper = webHelper;
     }
 
     #endregion
@@ -65,6 +57,7 @@ public class AccessiBeController : BasePluginController
         {
             Enabled = widgetSettings.ActiveWidgetSystemNames.Contains(AccessiBeDefaults.SystemName),
             ActiveStoreScopeConfiguration = storeId,
+            ScriptIsCustomized = !settings.Script?.Contains(AccessiBeDefaults.ConfigToken) ?? true,
             TriggerModel = settings.ToSettingsModel<AccessiBeTriggerModel>(),
             TriggerMobileModel = settingsMobile.ToSettingsModel<AccessiBeTriggerMobileModel>()
         };
@@ -95,20 +88,18 @@ public class AccessiBeController : BasePluginController
 
             #region Mobile trigger settings
 
-            model.TriggerModel.TriggerSize_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerSize, storeId);
-            model.TriggerModel.TriggerPositionX_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerPositionX, storeId);
-            model.TriggerModel.TriggerPositionY_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerPositionY, storeId);
-            model.TriggerModel.TriggerOffsetX_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerOffsetX, storeId);
-            model.TriggerModel.TriggerOffsetY_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerOffsetY, storeId);
-            model.TriggerModel.TriggerRadius_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerRadius, storeId);
+            model.TriggerModel.TriggerSize_OverrideForStore = await _settingService.SettingExistsAsync(settingsMobile, setting => setting.TriggerSize, storeId);
+            model.TriggerModel.TriggerPositionX_OverrideForStore = await _settingService.SettingExistsAsync(settingsMobile, setting => setting.TriggerPositionX, storeId);
+            model.TriggerModel.TriggerPositionY_OverrideForStore = await _settingService.SettingExistsAsync(settingsMobile, setting => setting.TriggerPositionY, storeId);
+            model.TriggerModel.TriggerOffsetX_OverrideForStore = await _settingService.SettingExistsAsync(settingsMobile, setting => setting.TriggerOffsetX, storeId);
+            model.TriggerModel.TriggerOffsetY_OverrideForStore = await _settingService.SettingExistsAsync(settingsMobile, setting => setting.TriggerOffsetY, storeId);
+            model.TriggerModel.TriggerRadius_OverrideForStore = await _settingService.SettingExistsAsync(settingsMobile, setting => setting.TriggerRadius, storeId);
 
             #endregion
         }
 
-        //prepare store URL
-        model.Url = storeId > 0
-            ? (await _storeService.GetStoreByIdAsync(storeId))?.Url
-            : _webHelper.GetStoreLocation();
+        if (model.ScriptIsCustomized)
+            _notificationService.WarningNotification(await _localizationService.GetResourceAsync("Plugins.Widgets.AccessiBe.ScriptIsCustomized.Warning"));
 
         return View("~/Plugins/Widgets.AccessiBe/Views/Configure.cshtml", model);
     }
@@ -132,6 +123,7 @@ public class AccessiBeController : BasePluginController
 
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.LeadColor, model.TriggerModel.LeadColor_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.StatementLink, model.TriggerModel.StatementLink_OverrideForStore, storeScope, false);
+        await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.FooterHtml, model.TriggerModel.FooterHtml_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.Language, model.TriggerModel.Language_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.Position, model.TriggerModel.Position_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerColor, model.TriggerModel.TriggerColor_OverrideForStore, storeScope, false);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Nop.Core.Domain.Cms;
@@ -173,6 +169,8 @@ public class AccessiBePlugin : BasePlugin, IWidgetPlugin
 
             ["Plugins.Widgets.AccessiBe.Fields.ShowMobile"] = "Show on Mobile",
             ["Plugins.Widgets.AccessiBe.Fields.ShowMobile.Hint"] = "Toggle widget visibility on mobile.",
+
+            ["Plugins.Widgets.AccessiBe.ScriptIsCustomized.Warning"] = "The widget settings contain a custom script, you cannot customize its appearance on this page, go to your accessiBe account."
         });
 
         await base.InstallAsync();

@@ -1,6 +1,7 @@
 ﻿using Nop.Plugin.Widgets.AccessiBe.Domain;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
+
 namespace Nop.Plugin.Widgets.AccessiBe.Models;
 
 /// <summary>

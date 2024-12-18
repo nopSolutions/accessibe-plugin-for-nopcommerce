@@ -16,9 +16,9 @@ public class RouteProvider : IRouteProvider
     /// <param name="endpointRouteBuilder">Route builder</param>
     public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapControllerRoute(AccessiBeDefaults.ConfigurationRouteName, 
-            "Plugins/AccessiBe/Configure",
-            new { controller = "AccessiBe", action = "Configure", area = AreaNames.ADMIN });
+        endpointRouteBuilder.MapControllerRoute(name: AccessiBeDefaults.ConfigurationRouteName,
+            pattern: "Plugins/AccessiBe/Configure",
+            defaults: new { controller = "AccessiBe", action = "Configure", area = AreaNames.ADMIN });
     }
 
     /// <summary>

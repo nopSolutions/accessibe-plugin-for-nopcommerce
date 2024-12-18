@@ -182,7 +182,7 @@
     $(function(){
         var inputs = $("#trigger-icon-container input[name='@Model.Name']");
         var currentValue = [...inputs]
-            .find(radio => $(radio).val() == "@((int)Model.Value)") || {};
+            .find(radio => $(radio).val() == '@((int)Model.Value)') || {};
         currentValue.checked = true;
     });
 </script>

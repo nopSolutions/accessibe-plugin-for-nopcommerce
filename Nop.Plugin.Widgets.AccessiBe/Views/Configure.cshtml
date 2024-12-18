@@ -13,7 +13,7 @@
                 <p>
                     1. Go to <a href="https://accessibe.com/?utm_source=nopcommerce_plugin&utm_medium=plugin&utm_content=plugin&utm_campaign=plugin" target="_blank">accessibe.com</a><br />
                     2. Click "<b>Start Free Trial</b>" and enter your details<br />
-                    3. Click "Go to installation" and copy-paste the script into the site's body tag.<br />
+                    3. Activate the widget on this page and customize its appearance<br />
                     <br />
                 </p>
                 <div class="form-group row">
@@ -158,10 +158,7 @@
                                 @await Html.PartialAsync("~/Plugins/Widgets.AccessiBe/Views/_Configure.Icons.cshtml", (Html.NameFor(m => m.TriggerModel.TriggerIcon), Model.TriggerModel.TriggerIcon))
                             </div>
                         </div>
-
-
                     </nop-nested-setting>
-
                     <div class="form-group row">
                         <div class="col-md-3">
                             <nop-override-store-checkbox asp-for="TriggerModel.ShowMobile_OverrideForStore" asp-input="TriggerModel.ShowMobile" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
@@ -248,14 +245,15 @@
 
 <script asp-location="Footer">
     $(function() {
-        const configSection = $("#trigger-button-section");
-        const enableCheckBox = $("#@Html.IdFor(m => m.Enabled)");
+        const configSection = $('#trigger-button-section');
+        const enableCheckBox = $('#@Html.IdFor(m => m.Enabled)');
+        const scriptIsCustomized = @Model.ScriptIsCustomized.ToString().ToLower();
 
         toggleConfig();
-        enableCheckBox.on("change", toggleConfig);
+        enableCheckBox.on('change', toggleConfig);
 
         function toggleConfig() {
-            if (enableCheckBox.is(':checked'))
+            if (enableCheckBox.is(':checked') && !scriptIsCustomized)
                 configSection.showElement();
             else
                 configSection.hideElement();

@@ -16,13 +16,13 @@ public record ConfigurationModel : BaseNopModel
     public bool Enabled { get; set; }
     public bool Enabled_OverrideForStore { get; set; }
 
-    public string Url { get; set; }
-
     [NopResourceDisplayName("Plugins.Widgets.AccessiBe.Fields.TriggerButton")]
-    public AccessiBeTriggerModel TriggerModel { get; set; }
+    public AccessiBeTriggerModel TriggerModel { get; set; } = new();
 
     [NopResourceDisplayName("Plugins.Widgets.AccessiBe.Fields.TriggerButtonMobile")]
     public AccessiBeTriggerMobileModel TriggerMobileModel { get; set; } = new();
+
+    public bool ScriptIsCustomized { get; set; }
 
     #endregion
 }

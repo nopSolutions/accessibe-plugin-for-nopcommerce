@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -16,8 +14,6 @@ namespace Nop.Plugin.Widgets.AccessiBe.Services;
 public class AccessiBeService
 {
     #region Fields
-
-    private const string ConfigToken = "{WIDGET_CONFIG}";
 
     private readonly AccessiBeSettings _accessiBeSettings;
     private readonly AccessiBeMobileSettings _accessiBeMobileSettings;
@@ -122,7 +118,7 @@ public class AccessiBeService
                 return Task.FromResult(string.Empty);
 
             //script can be customized
-            if (!widgetScript.Contains(ConfigToken))
+            if (!widgetScript.Contains(AccessiBeDefaults.ConfigToken))
                 return Task.FromResult(widgetScript);
 
             var jsonSerializer = new JsonSerializer
@@ -139,7 +135,7 @@ public class AccessiBeService
             var jsonMobile = JObject.FromObject(_accessiBeMobileSettings, jsonSerializer);
             json.Add("mobile", jsonMobile);
 
-            widgetScript = widgetScript.Replace(ConfigToken, json.ToString(Formatting.None));
+            widgetScript = widgetScript.Replace(AccessiBeDefaults.ConfigToken, json.ToString(Formatting.None));
 
             return Task.FromResult(widgetScript);
         });
