@@ -72,7 +72,7 @@ public class AccessiBeController : BasePluginController
             model.TriggerModel.StatementLink_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.StatementLink, storeId);
             model.TriggerModel.FooterHtml_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.FooterHtml, storeId);
             model.TriggerModel.ShowMobile_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.HideMobile, storeId);
-            model.TriggerModel.ShowTrigger_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.HideTrigger, storeId);
+            model.TriggerModel.HideTrigger_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.HideTrigger, storeId);
             model.TriggerModel.Language_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.Language, storeId);
             model.TriggerModel.Position_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.Position, storeId);
             model.TriggerModel.TriggerColor_OverrideForStore = await _settingService.SettingExistsAsync(settings, setting => setting.TriggerColor, storeId);
@@ -131,7 +131,7 @@ public class AccessiBeController : BasePluginController
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerPositionY, model.TriggerModel.TriggerPositionY_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerSize, model.TriggerModel.TriggerSize_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerRadius, model.TriggerModel.TriggerRadius_OverrideForStore, storeScope, false);
-        await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.HideTrigger, model.TriggerModel.ShowTrigger_OverrideForStore, storeScope, false);
+        await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.HideTrigger, model.TriggerModel.HideTrigger_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerOffsetX, model.TriggerModel.TriggerOffsetX_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerOffsetY, model.TriggerModel.TriggerOffsetY_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(triggerSettings, x => x.TriggerIcon, model.TriggerModel.TriggerIcon_OverrideForStore, storeScope, false);

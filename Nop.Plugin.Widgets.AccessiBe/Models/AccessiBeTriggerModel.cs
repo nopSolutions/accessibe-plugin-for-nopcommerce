@@ -1,4 +1,5 @@
-﻿using Nop.Plugin.Widgets.AccessiBe.Domain;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Plugin.Widgets.AccessiBe.Domain;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
@@ -29,13 +30,14 @@ public record AccessiBeTriggerModel : BaseNopModel, ISettingsModel
     public bool ShowMobile { get; set; } = false;
     public bool ShowMobile_OverrideForStore { get; set; }
 
-    [NopResourceDisplayName("Plugins.Widgets.AccessiBe.Fields.ShowTrigger")]
-    public bool ShowTrigger { get; set; } = false;
-    public bool ShowTrigger_OverrideForStore { get; set; }
+    [NopResourceDisplayName("Plugins.Widgets.AccessiBe.Fields.HideTrigger")]
+    public bool HideTrigger { get; set; } = false;
+    public bool HideTrigger_OverrideForStore { get; set; }
 
     [NopResourceDisplayName("Plugins.Widgets.AccessiBe.Fields.Language")]
     public string Language { get; set; } = "en";
     public bool Language_OverrideForStore { get; set; }
+    public SelectList Languages { get; set; } = new(AccessiBeDefaults.SupportedLanuages, "Value", "Key");
 
     [NopResourceDisplayName("Plugins.Widgets.AccessiBe.Fields.Position")]
     public TriggerHorizontalPosition Position { get; set; } = TriggerHorizontalPosition.Right;

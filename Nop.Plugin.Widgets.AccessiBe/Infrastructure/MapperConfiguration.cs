@@ -17,11 +17,8 @@ public class MapperConfiguration : Profile, IOrderedMapperProfile
         CreateMap<AccessiBeTriggerMobileModel, AccessiBeMobileSettings>();
 
         CreateMap<AccessiBeSettings, AccessiBeTriggerModel>()
-            .ForMember(model => model.ShowTrigger, options => options.MapFrom(src => !src.HideTrigger)) //invert
             .ForMember(model => model.ShowMobile, options => options.MapFrom(src => !src.HideMobile)); //invert
-
         CreateMap<AccessiBeTriggerModel, AccessiBeSettings>()
-            .ForMember(setting => setting.HideTrigger, options => options.MapFrom(src => !src.ShowTrigger)) //invert
             .ForMember(setting => setting.HideMobile, options => options.MapFrom(src => !src.ShowMobile)); //invert
     }
 
