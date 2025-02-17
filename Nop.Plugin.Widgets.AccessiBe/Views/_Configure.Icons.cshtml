@@ -1,5 +1,5 @@
 @model (string Id, string Name, TriggerIcon Value)
-<div class="icon-group-container" role="radiogroup" id="trigger-icon-container" aria-labelledby="@Model.Id">
+<div class="icon-group-container" role="radiogroup" id="trigger-icon-container" aria-labelledby="@(Model.Id)Label">
     <label class="icon-label">
         <input type="radio" name="@Model.Name" value="@((int)TriggerIcon.Display)">
         <i role="img" aria-label="Icon of LegacyDisplay" class="icon-container">

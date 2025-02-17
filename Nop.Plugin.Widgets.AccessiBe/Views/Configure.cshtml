@@ -197,7 +197,7 @@
                             </div>
                         </div>
                         <nop-nested-setting asp-for="TriggerModel.ShowMobile">
-                            <div role="group" area-labeledby="@Html.IdFor(m => m.TriggerModel.ShowMobile)Label">
+                            <div role="group" aria-labeledby="@Html.IdFor(m => m.TriggerModel.ShowMobile)Label">
                                 <div class="form-group row">
                                     <div class="col-md-3">
                                         <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerPositionX_OverrideForStore" asp-input="TriggerMobileModel.TriggerPositionX" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
