@@ -170,7 +170,9 @@ public class AccessiBePlugin : BasePlugin, IWidgetPlugin
             ["Plugins.Widgets.AccessiBe.Fields.ShowMobile"] = "Show on Mobile",
             ["Plugins.Widgets.AccessiBe.Fields.ShowMobile.Hint"] = "Toggle widget visibility on mobile.",
 
-            ["Plugins.Widgets.AccessiBe.ScriptIsCustomized.Warning"] = "The widget settings contain a custom script, you cannot customize its appearance on this page, go to your accessiBe account."
+            ["Plugins.Widgets.AccessiBe.ScriptIsCustomized.Warning"] = "The widget settings contain a custom script, you cannot customize its appearance on this page, go to your accessiBe account.",
+
+            ["Plugins.Widgets.AccessiBe.Notification.CloseLabel"] = "Close announcement",
         });
 
         await base.InstallAsync();

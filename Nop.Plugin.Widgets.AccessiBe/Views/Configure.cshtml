@@ -1,4 +1,5 @@
-﻿@model ConfigurationModel
+﻿@using System.Text.Encodings.Web
+@model ConfigurationModel
 
 @{
     Layout = "_ConfigurePlugin";
@@ -13,7 +14,7 @@
         <div class="card card-default">
             <div class="card-body">
                 <p>
-                    1. Go to <a href="https://accessibe.com/?utm_source=nopcommerce_plugin&utm_medium=plugin&utm_content=plugin&utm_campaign=plugin" target="_blank">accessibe.com</a><br />
+                    1. Go to <a href="https://accessibe.com/?utm_source=nopcommerce.com&utm_medium=web&utm_campaign=nopcommerce_v1" target="_blank">accessibe.com</a><br />
                     2. Click "<b>Start Free Trial</b>" and enter your details<br />
                     3. Activate the widget on this page and customize its appearance<br />
                     <br />
@@ -254,16 +255,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                <div class="col-md-3">
-                                    <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerOffsetY_OverrideForStore" asp-input="TriggerMobileModel.TriggerOffsetY" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
-                                    <nop-label asp-for="TriggerMobileModel.TriggerOffsetY" />
+                                    <div class="col-md-3">
+                                        <nop-override-store-checkbox asp-for="TriggerMobileModel.TriggerOffsetY_OverrideForStore" asp-input="TriggerMobileModel.TriggerOffsetY" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                        <nop-label asp-for="TriggerMobileModel.TriggerOffsetY" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="TriggerMobileModel.TriggerOffsetY"
+                                               data-toggle="tooltip" title="@T("Plugins.Widgets.AccessiBe.Fields.TriggerOffsetY.Hint")" data-trigger="focus" data-placement="top" />
+                                        <span asp-validation-for="TriggerMobileModel.TriggerOffsetY"></span>
+                                    </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="TriggerMobileModel.TriggerOffsetY"
-                                           data-toggle="tooltip" title="@T("Plugins.Widgets.AccessiBe.Fields.TriggerOffsetY.Hint")" data-trigger="focus" data-placement="top" />
-                                    <span asp-validation-for="TriggerMobileModel.TriggerOffsetY"></span>
-                                </div>
-                            </div>
                             </div>
                         </nop-nested-setting>
                     </div>
@@ -315,6 +316,18 @@
                 triggerButtonSection.hideElement();
             else
                 triggerButtonSection.showElement();
+        }
+
+        var notification = $('.alert-dismissable');
+        if (notification.length > 0) {
+            notification.first()
+              .attr("tabindex", "-1")
+              .trigger("focus");
+
+            $(notification)
+                .find('.close')
+                .removeAttr("aria-hidden")
+                .attr('aria-label', '@JavaScriptEncoder.Default.Encode(T("Plugins.Widgets.AccessiBe.Notification.CloseLabel").Text)');
         }
     });
 </script>
